@@ -20,7 +20,10 @@
             <ul class="user__info">
               <li>
                 <%= link_to "マイページ", "/users/#{current_user.id}" %>
+                <%= link_to "お気に入り", favorites_list_path %>
+                <%= link_to "設定", edit_user_registration_path %>
                 <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
+                
               </li>
             </ul>
           </span>
@@ -37,7 +40,7 @@
     <%= yield %>
     <footer>
       <p>
-        Copyright PicTweet 2023.
+        Copyright PicTweet 2025.
       </p>
     </footer>
   </body>

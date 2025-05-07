@@ -1,5 +1,6 @@
 <div class="contents row">
-  <div class="content_post" style="background-image: url(<%= @tweet.image %>);">
+  <div class="content_post" <% if @tweet.image.attached? %> style="background-image: url(<%= url_for(@tweet.image) %>);" <% end %>>
+
     <% if user_signed_in? && current_user.id == @tweet.user_id %>
       <div class="more">
         <span><%= image_tag 'arrow_top.png' %></span>
@@ -32,9 +33,19 @@
      <div class="comments">
       <h4>＜コメント一覧＞</h4>
       <% @comments.each do |comment| %>
-        <p>
+        <p class="comment-item">
+      <span> <%# ニックネームとテキストをグループ化 %>
           <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
           <%= comment.text %>
+    
+      <% if user_signed_in? && current_user.id == comment.user_id %>
+        <%# link_to にブロックを渡し、中に image_tag を記述 %>
+        <%= link_to tweet_comment_path(@tweet, comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "comment-delete-link" do %>
+          <%= image_tag 'trash.png', alt: '削除', class: 'delete-icon', size: '16x16' %>
+          
+        <% end %>
+      <% end %>
+      
         </p>
       <% end %>
     </div>

@@ -1,0 +1,16 @@
+
+
+<div class="contents row"> <%# index.html.erb と同じクラスを使うとスタイルを共有しやすい %>
+  
+  <p><%= @nickname %>お気に入り一覧</p>
+
+  <% if @favorite_tweets.present? %>
+    <% @favorite_tweets.each do |tweet| %> <%# 変数名注意！ %>
+    
+      <%= render 'tweets/tweet', tweet: tweet %> <%# 'tweets/tweet' は部分テンプレートのパスに合わせる %>
+     
+    <% end %>
+  <% else %>
+    <p>お気に入り登録した投稿はまだありません。</p> <%# お気に入りが0件の場合のメッセージ %>
+  <% end %>
+</div>

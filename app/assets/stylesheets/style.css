@@ -1058,3 +1058,78 @@ footer p {
 .search-form .search-btn {
   width: 10%;
 }
+.favorite_img{
+width:  50px;
+height: 50px;
+position: absolute;
+
+
+}
+
+.favorite-link .favorite-star {
+  width: 30px; /* 例: 星の幅を指定 */
+  height: auto; /* 高さは自動調整 */
+  vertical-align: middle; /* 画像と隣の文字の縦位置を中央揃えに */
+}
+
+.favorite-link .favorite-count {
+  font-size: 0.9em; /* 例: カウント数の文字を少し小さく */
+  margin-right: -5px; /* 例: 星とカウント数の間に少し余白を設ける */
+  color: white; /* 例: カウント数の文字色 */
+}
+
+/* ログインしていないユーザー用のスタイル (任意) */
+.favorite-link.disabled .favorite-star {
+  opacity: 0.5; /* 例: 少し薄く表示 */
+  cursor: not-allowed; /* カーソルを禁止マークに */
+}
+/* 左上: お気に入りボタン (.favo) の設定 */
+div.contents.row div.content_post div.favo {
+  /* Flexbox が配置するので、特別な position 指定は不要なことが多い */
+  /* 必要に応じて、端からの微妙な位置調整に margin や padding を使う */
+  /* 例: 左と上に少しだけ余白 */
+  /* margin-top: 5px; */
+  /* margin-left: 5px; */
+  z-index: 3; /* ★ more のドロップダウンより手前に表示させたい場合に備えて指定 (positionも必要) */
+  position: relative; /* z-indexを効かせるため */
+}
+
+
+
+.comment-item {
+  display: flex;             /* p要素をFlexコンテナにする */
+  justify-content: space-between; /* 子要素(テキスト部分とアイコン)を左右に振り分ける */
+  align-items: center;         /* 子要素を垂直方向中央に揃える */
+  margin-bottom: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+  word-break: break-all; /* 長いコメントがはみ出ないように */
+ }
+ 
+ /* ニックネームとテキストを囲むspan (クラス名を追加推奨) */
+ .comment-content {
+  margin-right: 10px; /* テキストと削除アイコンの間にスペース */
+  /* 必要に応じて追加: テキスト部分が利用可能な幅を占めるように */
+  flex-grow: 1;
+  /* 必要に応じて追加: flexアイテムがコンテナ幅を超えた場合に縮小できるように */
+  min-width: 0;
+ }
+ 
+ /* 削除アイコンのリンク */
+ .comment-delete-link {
+  flex-shrink: 0; /* コンテナが狭くなってもアイコンが縮まないように */
+  /* 必要に応じて line-height を調整してアイコン周りの余白を制御 */
+  /* line-height: 1; */
+ }
+ 
+ /* 削除アイコン画像 */
+ .delete-icon {
+  /* display: block; を削除し、インライン要素のように扱いつつ垂直揃えを可能にする */
+  display: inline-block;
+  vertical-align: middle; /* 他の要素と垂直中央揃えにする */
+ }
+ 
+ /* ホバー時の見た目変更 (任意) */
+ .comment-delete-link:hover {
+  opacity: 0.7;
+ }

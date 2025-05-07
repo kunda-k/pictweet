@@ -1,5 +1,19 @@
-<%= form_with(model: tweet, local: true) do |form| %>
-      <%= form.text_field :image, placeholder: "Image Url" %>
-      <%= form.text_area :text, placeholder: "text", rows: "10" %>
-      <%= form.submit "SEND" %>
+<%= form_with(model: tweet, local: true, multipart: true) do |form| %>
+  <%# エラーメッセージ表示などをここに含めるのが一般的です %>
+  <%# <%= render 'shared/error_messages', model: form.object %> 
+
+
+  <div class="field">
+    <%= form.label :image, "画像ファイルを選択" %> <%# ラベルを追加しました %>
+    <%= form.file_field :image %> <%# text_field から file_field へ変更 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :text %> <%# text_area にもラベルを追加 %>
+    <%= form.text_area :text, placeholder: "text", rows: "10" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "SEND" %>
+  </div>
 <% end %>

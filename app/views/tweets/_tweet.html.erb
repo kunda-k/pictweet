@@ -1,4 +1,13 @@
-<div class="content_post" style="background-image: url(<%= tweet.image %>);">
+<% if tweet.image.attached? %>
+  <div class="content_post" style="background-image: url(<%= url_for(tweet.image) %>);">
+
+
+ <div class="favo">
+ <%# お気に入りボタン部分 %>
+    <div class="favorite-section" id="favorite-button-<%= tweet.id %>"> 
+      <%= render 'favorites/favorite_button', tweet: tweet %> <%# または pict: pict %>
+    </div>
+  </div>
 
   <div class="more">
 
@@ -28,3 +37,5 @@
         </a>
       </span>
 </div>
+
+<% end %>

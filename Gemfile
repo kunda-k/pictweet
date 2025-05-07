@@ -69,7 +69,8 @@ end
 
 gem 'pry-rails'
 gem 'devise'
-
+gem 'pagy'
+gem 'acts-as-taggable-on'
 group :production do
   gem 'pg'
 end

@@ -1,0 +1,25 @@
+<%# ローカル変数として tweet (または pict) が渡されることを想定 %>
+<%# turbo_frame_tag で囲み、一意のIDを付与する %>
+<%= turbo_frame_tag dom_id(tweet, :favorite_button) do %>
+  <% if user_signed_in? %>
+    <% if current_user.favorite?(tweet) %>
+      <%# お気に入り済みの場合: 黄色い星を表示し、クリックで解除 (DELETE) %>
+      <%= link_to tweet_favorites_path(tweet), data: { turbo_method: :delete }, class: 'favorite-link' do %>
+        <span class="favorite-count"><%= tweet.favorites.count %></span>
+          <%= image_tag 'ystar.png', alt: 'お気に入り解除', class: 'favorite-star' %>
+      <% end %>
+    <% else %>
+      <%# 未登録の場合: 白い星を表示し、クリックで登録 (POST) %>
+      <%= link_to tweet_favorites_path(tweet), data: { turbo_method: :post }, class: 'favorite-link' do %>
+       <span class="favorite-count"><%= tweet.favorites.count %></span>
+        <%= image_tag 'wstar.png', alt: 'お気に入り登録', class: 'favorite-star' %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%# ログインしていないユーザー向けの表示 %>
+    <span class="favorite-link disabled">
+      <%= image_tag 'wstar.png', alt: 'お気に入り登録できません', class: 'favorite-star' %>
+      <span class="favorite-count"><%= tweet.favorites.count %></span>
+    </span>
+  <% end %>
+<% end %> <%# turbo_frame_tag の終わり %>
